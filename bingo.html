@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bingo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            font-family: helvetica;
+        }
+
+        #bingo {
+            display: flex;
+            flex-flow: wrap;
+            width: 50vw;
+            height: 50vw;
+        }
+
+        .tile {
+            box-sizing: border-box;
+            padding: 0.5vw;
+            display: flex;
+            width: 9vw;
+            height: 9vw;
+            margin: 0.5vw;
+            background: darkcyan;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .selected {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="bingo">
+</div>
+</body>
+<script>
+    function maketile(text) {
+        const div = document.createElement('div');
+        div.innerText = text;
+        div.classList.add('tile');
+        div.addEventListener('click', () => div.classList.add('selected'));
+        return div;
+    }
+
+    const words = [
+        "'Talk to me'",
+        "'Just work with me'",
+        "'talk to me, work with me, listen'",
+        "'Are you with me'",
+        "'3-Pound jelly'",
+
+        "'24 months out'",
+        'dramatic pause with no response',
+        'dramatic pause with response',
+        'puts hand on hot seat',
+        'over-pronounces any A',
+
+        'puts foot on hot seat',
+        "'hot seat'",
+        "'I'm here to burst your bubble'",
+        "'leeeeeadership' (normal pronunciation not counted)",
+        "leans on something",
+
+        "'someone take the hot seat'",
+        "someone takes the hot seat",
+        "'eeeeven'",
+        "says a sentence by chopping it up into individual words",
+        "'Do youuuuu'",
+
+        "'Do you, do youuuu'",
+        "sits on hot seat",
+        "'engineeeeerrrr'",
+        "'hey, you know what'",
+        "'yes or no'"
+    ];
+
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+
+    shuffleArray(words);
+
+    const bingo = document.getElementById('bingo');
+
+    for (let word of words) {
+        const tile = maketile(word);
+        bingo.appendChild(tile);
+    }
+</script>
+</html>
