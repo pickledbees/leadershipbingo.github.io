@@ -44,7 +44,7 @@
         const div = document.createElement('div');
         div.innerText = text;
         div.classList.add('tile');
-        div.addEventListener('click', () => div.classList.add('selected'));
+        div.addEventListener('click', () => div.classList.toggle('selected'));
         return div;
     }
 
